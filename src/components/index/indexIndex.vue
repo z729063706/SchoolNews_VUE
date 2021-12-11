@@ -326,7 +326,8 @@ methods: {
             global.setUser(res.data);
             this.username = global.user.uname;
             this.loginFlag = true;
-            //console.log(global.user);
+            console.log(res.data);
+            console.log(global.user);
           }
         })        
           

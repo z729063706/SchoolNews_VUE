@@ -3,7 +3,7 @@
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item :to="{ path: '/admin/publish' }">发布</el-breadcrumb-item>
-      <el-button size="mini" type="success" class="right" icon="el-icon-check" @click="publish">立即发布</el-button>
+      <el-button size="mini" type="success" class="right" icon="el-icon-check" :disabled="publishing" @click="publish">立即发布</el-button>
     </el-breadcrumb>
     <div style="margin:10px"></div>
     <el-row>
@@ -42,7 +42,8 @@ export default {
         content: "无内容",
         type: "1",
         mainpic:""
-      }
+      },
+      publishing:false
     };
   },
 
@@ -51,12 +52,8 @@ export default {
   methods: {
     catchData(newsContent) {
       this.news.content = newsContent;
-      //console.log(this.editor);
-      //return;
     },
     publish() {
-      //console.log(this.news.content);
-      //console.log(this.newsContent);
       if (this.news.title==""||this.news.mianpic==""){
         this.$message({
               type: "error",
@@ -74,29 +71,33 @@ export default {
         mainpic:this.news.mainpic
       }
       console.log(obj);
+      this.publishing = true;
       this.axios
         .post("api/newsadd", obj)
         .then(res => {
-          if (res.data) {
+          if (res.data>0) {
+            this.publishing=false;
             this.$confirm("发布成功，立刻去看这条新闻", "提示", {
               confirmButtonText: "确定",
               cancelButtonText: "取消",
               type: "warning"
             })
               .then(() => {
-                // console.log(res.data.id);
-                this.$router.push({
+                //console.log(res.data);
+
+                  this.$router.push({
                   path:'/readNews/'+res.data,
                 })
               })
               .catch(() => {
-                this.$router.push({
+                  this.$router.push({
                   path:'/admin/manage',
                 })
               });
           }
         })
         .catch(err => {
+          this.publishing=false;
           window.console.log(err);
         });
     }

@@ -100,16 +100,16 @@ export default {
           this.axios.get("api/delnews?id="+id+"&uname="+global.user.uname+"&upass="+global.user.upass)
           .then(() => {
             this.changeNewType()
-            this.tableData.list.splice(index, 1);
+            //this.tableData.list.splice(0, 1);
             this.$message({
               type: "success",
               message: "删除成功"
             });
           })
-          .catch(()=>{
+          .catch((e)=>{
             this.$message({
             type: "error",
-            message: "用户权限不足"
+            message: "用户权限不足!"+e
           });
           })
         })
