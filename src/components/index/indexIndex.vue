@@ -62,8 +62,8 @@
     </div>
     <div class="swiper">
       <el-carousel height="500px" indicator-position="outside">
-          <el-carousel-item v-for="item in 3" :key="item">
-            <img width="100%" :src="'/image/'+item+'.png'" alt />
+          <el-carousel-item v-for="item in mainpic" :key="item.index" v-if="item.vaild" >
+            <img width="100%" :src="item.url"  alt />
           </el-carousel-item>
     </el-carousel>
     </div>
@@ -83,26 +83,28 @@
       
     </div>
     <div class="news">
+      <div class="aboutusTitle" id="aboutus">奥林要闻</div>
       <el-row :gutter="40" class="content-row" id="news">
         <el-col :xs="22" :sm="22" :md="22" :lg="22" :xl="22" class="news">
-          <el-tabs v-model="activeName" @tab-click="tabChange">
+          <el-tabs v-model="activeName" >
             <el-tab-pane label="教学教务" name="jw">
               <ul
-                v-for="news in this.jw_news.slice(0,maxNumber)"
-                  :key="news.id"
-                  @click="goNews(news.id)"
+                v-for="(item, index) in this.jw_news"
+                  v-if="index < maxNumber"
+                  :key="index"
+                  @click="goNews(item.id)"
               >
                 <div class="newsShow">
                 <li style="display:flex ">
                   <div class="newsPic">
-                    <img class="newsPicimg" :src = "news.pic" />
+                    <img class="newsPicimg" :src = "item.pic" />
                   </div>
                   <div class="newsText">
                       <div class="newsTitle">
-                        <h3>{{news.title}}</h3>
+                        <h3>{{item.title}}</h3>
                       </div>
                       <div class="newsContent">
-                        <p>{{news.shortContent}}</p>
+                        <p>{{item.shortContent}}</p>
                       </div>
                       <div class="newsShowmore">
                         <h5>[查看更多]</h5>
@@ -115,22 +117,23 @@
               
             </el-tab-pane>
             <el-tab-pane label="通知公告" name="notice">
-               <ul
-                v-for="news in this.notice_news.slice(0,maxNumber)"
-                  :key="news.id"
-                  @click="goNews(news.id)"
+              <ul
+                v-for="(item, index) in this.notice_news"
+                  v-if="index < maxNumber"
+                  :key="index"
+                  @click="goNews(item.id)"
               >
                 <div class="newsShow">
                 <li style="display:flex ">
                   <div class="newsPic">
-                    <img class="newsPicimg" :src = "news.pic" />
+                    <img class="newsPicimg" :src = "item.pic" />
                   </div>
                   <div class="newsText">
                       <div class="newsTitle">
-                        <h3>{{news.title}}</h3>
+                        <h3>{{item.title}}</h3>
                       </div>
                       <div class="newsContent">
-                        <p>{{news.shortContent}}</p>
+                        <p>{{item.shortContent}}</p>
                       </div>
                       <div class="newsShowmore">
                         <h5>[查看更多]</h5>
@@ -142,22 +145,23 @@
               </ul>
             </el-tab-pane>
             <el-tab-pane label="战果捷报" name="good">
-               <ul
-                v-for="news in this.good_news.slice(0,maxNumber)"
-                  :key="news.id"
-                  @click="goNews(news.id)"
+             <ul
+                v-for="(item, index) in this.good_news"
+                  v-if="index < maxNumber"
+                  :key="index"
+                  @click="goNews(item.id)"
               >
                 <div class="newsShow">
                 <li style="display:flex ">
                   <div class="newsPic">
-                    <img class="newsPicimg" :src = "news.pic" />
+                    <img class="newsPicimg" :src = "item.pic" />
                   </div>
                   <div class="newsText">
                       <div class="newsTitle">
-                        <h3>{{news.title}}</h3>
+                        <h3>{{item.title}}</h3>
                       </div>
                       <div class="newsContent">
-                        <p>{{news.shortContent}}</p>
+                        <p>{{item.shortContent}}</p>
                       </div>
                       <div class="newsShowmore">
                         <h5>[查看更多]</h5>
@@ -171,9 +175,25 @@
            
           </el-tabs>
         </el-col>
-      <div class="showMore" @click="maxNumber = maxNumber + 3">[查看更多]</div>
+      <div class="showMore" @click="showMore('news')">[查看更多]</div>
       </el-row>
       
+    </div>
+    <div class="teachers">
+      <div class="aboutusTitle" id="aboutus">师资力量</div>
+      <div class="teacherRow">
+        <div class="teacher"
+            v-for="(item, index) in this.teacher"
+            v-if="index < maxTeacher"
+            :key="index"
+            @click="goTeacher(item.id)"
+        >
+          <img :src="item.mainpic">
+          <h4>{{item.name}}</h4>
+          <h5>{{item.zhicheng}}</h5>
+        </div>
+      </div>
+      <div class="showMore" @click="showMore('teacher')">[查看更多]</div>
     </div>
   </div>
 </div>
@@ -191,13 +211,16 @@ data () {
    return {
       totalNumber:10,
       maxNumber:3,
-      bannerHeight: 320,
+      maxTeacher:4,
+      totalTeacher:4,
       activeName: "jw",
       username: "",
       password: "",
+      teacher:{},
       loginFlag:false,
       jw_news:{},
       notice_news:{},
+      mainpic:{},
       good_news:{}
       }
 },
@@ -236,9 +259,38 @@ computed: {
 },
 watch: {},
 methods: {
+    showMore(name){
+      if (name == "teacher"){
+        if (this.maxTeacher>this.totalTeacher){
+          this.$message({
+              type: "danger",
+              message: "一点也没有了 X﹏X"
+            });
+        }
+        else{
+          this.maxTeacher = this.maxTeacher+4;
+        }
+
+      }
+      if (name == "news"){
+        if (this.maxNumber>this.totalNumber){
+          this.$message({
+              type: "danger",
+              message: "一点也没有了 X﹏X"
+            });
+        }
+        else{
+          this.maxNumber = this.maxNumber+3;
+        }
+      }
+    },
     goNews(id){
       //console.log(id);
       window.location.href="/index#/readNews/"+id;
+    },
+    goTeacher(id){
+      //console.log(id);
+      window.location.href="/index#/teachers/"+id;
     },
     updataUsername(e) {
       this.username = e;
@@ -278,29 +330,7 @@ methods: {
           }
         })        
           
-    },
-    tabChange(tab) {
-      let newsType = tab.name;
-      if (this.$store.state.news[newsType].list.length < 1) {
-        this.$store.dispatch("requestNews", {
-          pageSize: 10,
-          page: 1,
-          type: newsType
-        });
-        // this.requestNews(10, 1, newsType, () => {
-        // });
-      }
     }
-},
-// 生命周期 - 创建完成（可以访问当前this实例）
-created () {
-  
-
-},
-// 生命周期 - 挂载完成（可以访问DOM元素）
-mounted () {
-  
-    
 },
 // 生命周期 - 创建之前
 beforeCreate () {
@@ -322,6 +352,16 @@ beforeCreate () {
       this.totalNumber = res.data.length
       //console.log("thisgd->",this.good_news);
     })
+    //teacher
+    this.axios.get("api/teacher").then(res=>{
+      this.teacher = res.data;     
+      this.totalTeacher = res.data.length;
+      //console.log("thist->",this.teacher);
+    })
+    this.axios.get("api/mainpic").then(res=>{
+      this.mainpic = res.data;     
+      console.log("mainpic->",this.mainpic);
+    })
 },
 // 生命周期 - 挂载之前
 beforeMount () {},
@@ -337,6 +377,7 @@ destroyed () {}
 </script>
 
 <style>
+
   .login{
   padding: 20px;
   }
@@ -348,8 +389,46 @@ destroyed () {}
 
 <style scoped>
 
+.teacher{
+  display: flex;
+  flex-direction: column;
+  margin: 2%;
+  transition: 0.3s;
+  border-style: groove;
+  padding: 2%;
+  width: 16%;
+}
+.teacher:hover{
+  transition: 0.3s;
+  background: #c5e4d4;
+  cursor: pointer;
+  box-shadow: 2px 2px 10px #475669;
+}
+.teacher img{
+  height: 200px;
+  margin: auto;
+  
+}
+.teacher h4, .teacher h5{
+  margin: auto;
+}
+.teachers{
+  display: flex;
+  flex-direction: column;
+}
+.teacherRow{
+  display: flex;
+  flex-wrap: wrap;
+}
 .showMore{
   margin: auto;
+  transition: 0.3s;
+}
+.showMore:hover{
+  color: #599cf8;
+  font-size: 20px;
+  transition: 0.3s;
+  cursor: pointer;
 }
 .aboutus{
   display: flex;
@@ -427,8 +506,9 @@ destroyed () {}
 .news {
   width: 100%;
   box-sizing: border-box;
-  flex-direction: row;
+  flex-direction: column;
   display: flex;
+  border: none;
 }
 .news li {
   margin: auto;

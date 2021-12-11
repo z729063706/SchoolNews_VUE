@@ -7,10 +7,13 @@ import Index from '../components/index/index'
 import IndexIndex from '../components/index/indexIndex'
 import indexSearch from '../components/index/search'
 import ReadNews from '../components/readNew'
+import Teacher from '../components/teachers'
 import Publish from '../components/admin/publish'
 import Manage from '../components/admin/manage'
 import UserManage from '../components/admin/userManage'
 import Edit from '../components/admin/edit'
+import TeacherManage from '../components/admin/teacher'
+import MainpicManage from '../components/admin/mainpic'
 import store from '../store/index'
 import global from '../global.js'
 const router = new Router({
@@ -38,7 +41,13 @@ const router = new Router({
             path: '/readNews/:id/',
             name: 'readNews',
             component: ReadNews
-        }, {
+        }, 
+        {
+            path: '/teachers/:id/',
+            name: 'teachers',
+            component: Teacher
+        },
+        {
             path: '/Admin',
             name: 'Admin',
             component: Admin,
@@ -61,6 +70,14 @@ const router = new Router({
                 {
                     path: 'userMange',
                     component: UserManage,
+                },
+                {
+                    path: 'teacher',
+                    component: TeacherManage,
+                },
+                {
+                    path: 'mainpic',
+                    component: MainpicManage,
                 }
 
             ],

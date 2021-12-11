@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router/index.js'
 import axios from 'axios';
-axios.defaults.baseURL = process.env.NODE_ENV==='production'?'http://127.0.0.1:8080':'/api'
+axios.defaults.baseURL = process.env.NODE_ENV==='production'?'http://8.141.64.60:8080/untitled-1.0-SNAPSHOT/':'/api'
 // axios.defaults.baseURL = '/api'
 
 axios.defaults.withCredentials=true;

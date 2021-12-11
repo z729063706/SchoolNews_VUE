@@ -27,6 +27,14 @@
                 <i class="el-icon-user-solid"></i>
                 <span slot="title">用户管理</span>
               </el-menu-item>
+              <el-menu-item index="/admin/teacher">
+                <i class="el-icon-user-solid"></i>
+                <span slot="title">教师信息</span>
+              </el-menu-item>
+              <el-menu-item index="/admin/mainpic">
+                <i class="el-icon-user-solid"></i>
+                <span slot="title">首页轮播图管理</span>
+              </el-menu-item>
             </el-menu>
           </el-row>
         </el-aside>

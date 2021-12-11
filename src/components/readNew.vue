@@ -21,7 +21,6 @@ import logo from "./logo";
 import bottom from "./bottom";
 export default {
   components: {
-    top,
     logo,
     bottom
   },

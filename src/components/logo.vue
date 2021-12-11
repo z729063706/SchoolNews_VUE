@@ -2,7 +2,11 @@
   <div class="logo">
     <router-link to="/"><img src="/image/Aulin.png" alt /></router-link>
     <div class="nav">
-      <el-menu :default-active="activeIndex" class="el-menu-nav" mode="horizontal" @select="handleSelect">
+      <el-menu 
+        :default-active="activeIndex" 
+        class="el-menu-nav" 
+        mode="horizontal" 
+        @select="handleSelect">
         <router-link to="/" class="link"><el-menu-item index="1">网站首页</el-menu-item></router-link>
         <el-submenu index="2">
           <template slot="title" class="menu-group">奥林要闻</template>
@@ -26,29 +30,19 @@ export default {
   components: {},
   data() {
     return {
-      msg: "Hello Vue"
+      msg: "Hello Vue",
+      activeIndex: "1"
     };
   },
 
   computed: {},
   watch: {},
-  methods: {},
-  // 生命周期 - 创建完成（可以访问当前this实例）
-  created() {},
-  // 生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {},
-  // 生命周期 - 创建之前
-  beforeCreate() {},
-  // 生命周期 - 挂载之前
-  beforeMount() {},
-  // 生命周期 - 更新之前
-  beforeUpdate() {},
-  // 生命周期 - 更新之后
-  updated() {},
-  // 生命周期 - 销毁之前
-  beforeDestroy() {},
-  // 生命周期 - 销毁完成
-  destroyed() {}
+  methods: {
+    handleSelect(index, indexPath){
+      this.activeIndex = index;
+      console.log("index",index,"  path",indexPath);
+    }
+  },
 };
 </script>
 <style scoped>
@@ -156,4 +150,10 @@ export default {
         font-size: 20px;
         color: #ededed;
     }
-</style>
+    .el-menu-item.is-active {
+      background-color: #247bb4 !important;
+    }
+    .el-submenu.is-active {
+      background-color: #247bb4 !important;
+    }
+    </style>
