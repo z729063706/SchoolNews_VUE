@@ -1,22 +1,19 @@
 <template>
   <div class>
     <div class="content">
-      <el-button size="mini" type="default" @click="dialoadAddView= true">添加新管理员</el-button>
-      <el-dialog class="dialog-addUser" title="添加新管理员" :visible.sync="dialoadAddView">
+      <el-button size="mini" type="default" @click="dialoadAddView= true">添加新用户</el-button>
+      <el-dialog class="dialog-addUser" title="添加新用户(只允许添加权限为1的学生角色)" :visible.sync="dialoadAddView">
+        <div class="layout-row">
+          <h3>姓名</h3>
+          <el-input v-model="newname" placeholder="请输入姓名"></el-input>
+        </div>
         <div class="layout-row">
           <h3>用户名</h3>
-          <el-input v-model="username" placeholder="请输入用户名"></el-input>
+          <el-input v-model="newusername" placeholder="请输入用户名"></el-input>
         </div>
         <div class="layout-row">
           <h3>密码</h3>
-          <el-input type="password" v-model="password" placeholder="请输入密码"></el-input>
-        </div>
-        <div class="layout-row">
-          <h3>角色</h3>
-          <el-select v-model="role" placeholder="请选择管理员角色">
-            <el-option label="新闻管理员" value="newsadmin"></el-option>
-            <el-option label="主管理员" value="admin"></el-option>
-          </el-select>
+          <el-input type="password" v-model="newpassword" placeholder="请输入密码"></el-input>
         </div>
         <div slot="footer" class="dialog-footer">
           <el-button @click="dialoadAddView = false">取 消</el-button>
@@ -51,8 +48,9 @@ export default {
     return {
       msg: "Hello 管理员管理",
       dialoadAddView: false,
-      username: "",
-      password: "",
+      newusername: "",
+      newpassword: "",
+      newname: "",
       role: "newsadmin",
       userList:{}
     };
@@ -63,31 +61,34 @@ export default {
   methods: {
     handleAdd() {
       let obj = {
-        _id: this.username,
-        password: this.password,
-        role: this.role
+        newusername: this.newusername,
+        newpassword: this.newpassword,
+        newname:this.newname,
+        uname: global.user.uname,
+        upass:global.user.upass
       };
+      //console.log(obj);
       this.axios
-        .post("/admin/addAdmin", obj)
+        .post("/api/useradd", obj)
         .then(res => {
-          window.console.log(res);
-          if (res.data.msg == "添加成功") {
+          //window.console.log(res);
             this.$message({
               type: "success",
               message: "添加成功"
             });
             this.dialoadAddView = false;
-            this.$store.commit("addUser",obj)
-            this.username=""
-            this.password=""
-          } else {
-            this.$message({
-              type: "danger",
-              message: res.data.msg
+            this.axios.post("api/getuserlist?uname="+global.user.uname+"&upass="+global.user.upass)
+            .then(res=>{
+              this.userList = res.data;
+              //console.log(this.userList);
             });
-          }
-        })
-        .catch(() => {});
+          })
+        .catch(() => {
+          this.$message({
+            type: "danger",
+            message: "用户状态异常!"
+          });
+        });
     },
     userEdit(uid) {
       //console.log(uid);
@@ -173,7 +174,7 @@ export default {
     this.axios.post("api/getuserlist?uname="+global.user.uname+"&upass="+global.user.upass)
     .then(res=>{
       this.userList = res.data;
-      console.log(this.userList);
+      //console.log(this.userList);
     });
   }
 };
