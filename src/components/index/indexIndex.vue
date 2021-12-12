@@ -464,9 +464,10 @@ destroyed () {}
   justify-content: left;
   z-index: 100;
   border: #b5b5b5 groove;
-  bottom: calc((100% - 350px) * 0.5);
+  /* bottom: calc((100% - 350px) * 0.5); */
   background: #86869dc2;
   height: 50%;
+  max-height: 500px;
   border-radius:30px;
   box-shadow: 11px 11px 13px 0px #5d626e85;
 }
