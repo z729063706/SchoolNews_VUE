@@ -5,7 +5,6 @@ Vue.use(Router)
 import Admin from '../components/admin/admin'
 import Index from '../components/index/index'
 import IndexIndex from '../components/index/indexIndex'
-import indexSearch from '../components/index/search'
 import ReadNews from '../components/readNew'
 import Teacher from '../components/teachers'
 import Publish from '../components/admin/publish'
@@ -25,10 +24,6 @@ const router = new Router({
             children: [{
                     path: '',
                     component: IndexIndex
-                },
-                {
-                    path: 'search',
-                    component: indexSearch
                 }
             ]
         },

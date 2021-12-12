@@ -65,7 +65,7 @@ module.exports = {
       // proxy: null // string | Object
       proxy: {
         '/api': {
-            target: 'http://127.0.0.1:8080/untitled-1.0-SNAPSHOT/', //API服务器的地址
+            target: 'http://8.141.64.60:8080/untitled-1.0-SNAPSHOT/', //API服务器的地址
             changeOrigin: true,
             pathRewrite: {
                 '^/api': ''

@@ -1,5 +1,5 @@
 <template>
-<div class=''>
+<div class='container'>
   <div class="pic">
         
     <div class="loginlabel">
@@ -286,11 +286,11 @@ methods: {
     },
     goNews(id){
       //console.log(id);
-      window.location.href="/index#/readNews/"+id;
+      window.location.href="/#/readNews/"+id;
     },
     goTeacher(id){
       //console.log(id);
-      window.location.href="/index#/teachers/"+id;
+      window.location.href="/#/teachers/"+id;
     },
     updataUsername(e) {
       this.username = e;
@@ -389,7 +389,10 @@ destroyed () {}
 </style>
 
 <style scoped>
-
+.container{
+  width: 100%;
+  overflow:hidden;
+}
 .teacher{
   display: flex;
   flex-direction: column;
@@ -406,6 +409,7 @@ destroyed () {}
   box-shadow: 2px 2px 10px #475669;
 }
 .teacher img{
+  max-width: 100%;
   height: 200px;
   margin: auto;
   
@@ -414,6 +418,7 @@ destroyed () {}
   margin: auto;
 }
 .teachers{
+  width: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -492,7 +497,7 @@ destroyed () {}
   }
 .content {
   display: flex;
-  max-width: 1080px;
+  width: 100%;
   /* margin: 0; */
   /* display: flex; */
   padding: 40px 0px;
@@ -536,12 +541,12 @@ destroyed () {}
   display: flex;
 }
 .newsPic{
-  width: 400px;
+  width: 100%;
   margin: auto;
   padding: 20px;
 }
 .newsPicimg{
-  width: 360px;
+  width: 100%;
   max-height: 245px;
   overflow:hidden;
 }
