@@ -53,7 +53,6 @@ export default {
               message: "添加成功"
             });
             this.dialoadAddView = false;
-            this.$store.commit("addUser",obj)
             this.username=""
             this.password=""
           } else {

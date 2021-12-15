@@ -10,10 +10,8 @@ import Teacher from '../components/teachers'
 import Publish from '../components/admin/publish'
 import Manage from '../components/admin/manage'
 import UserManage from '../components/admin/userManage'
-import Edit from '../components/admin/edit'
 import TeacherManage from '../components/admin/teacher'
 import MainpicManage from '../components/admin/mainpic'
-import store from '../store/index'
 import global from '../global.js'
 const router = new Router({
     mode: 'hash',
@@ -58,10 +56,6 @@ const router = new Router({
                     path: 'manage',
                     component: Manage
                 }, 
-                {
-                    path: 'edit/:id/',
-                    component: Edit,
-                },
                 {
                     path: 'userMange',
                     component: UserManage,

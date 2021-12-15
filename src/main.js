@@ -14,7 +14,6 @@ Vue.prototype.$qs = qs;
 Vue.config.productionTip = false
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-import store from './store/index.js'
 
 const errorHandler = (error, vm)=>{
   window.console.error('抛出全局异常');
@@ -29,6 +28,5 @@ Vue.config.errorHandler = errorHandler;
 Vue.use(ElementUI);
 new Vue({
   render: h => h(App),
-  router,
-  store
+  router
 }).$mount('#app')
