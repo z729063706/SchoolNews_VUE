@@ -50,11 +50,13 @@
 1. node.js
 2. npm
 3. 本人测试环境:
+```
 ├─┬ element-ui@2.12.0
 │ └── vue@2.6.10 deduped
 ├─┬ vue-axios@2.1.5
 │ └── vue@2.6.10 deduped
 └── vue@2.6.10
+```
 
 ###### 安装步骤
 
