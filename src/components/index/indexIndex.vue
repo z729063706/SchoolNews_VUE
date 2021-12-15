@@ -31,7 +31,7 @@
           <div class="welText">
             <p>登陆成功!</p>
             <br>
-            <p>{{this.username}} {{userType}},{{hello}}</p>
+            <p>{{this.name}} {{userType}},{{hello}}</p>
           </div>
           <div class="buttons">
             <el-button type="success" plain @click="toAdmin">进入后台</el-button>
@@ -212,6 +212,7 @@
         activeName: "jw",
         username: "",
         password: "",
+        name:"",
         teacher:{},
         loginFlag:false,
         jw_news:{},
@@ -298,8 +299,9 @@
         this.$router.push("/admin");
       },
       logout() {
-        this.username = "";
+        this.name = null;
         this.loginFlag = false;
+        localStorage.removeItem('user');
       },
       login() {
         if (this.username==""||this.password==""){
@@ -320,8 +322,9 @@
             }
             else {
               global.setUser(res.data);
-              this.username = global.user.name;
+              this.name = global.user.name;
               this.loginFlag = true;
+              localStorage.setItem('user', JSON.stringify(global.user));
             }
           })        
             
@@ -357,17 +360,22 @@
         this.mainpic = res.data;     
         //console.log("mainpic->",this.mainpic);
       })
-  },
-  // 生命周期 - 挂载之前
-  beforeMount () {},
-  // 生命周期 - 更新之前
-  beforeUpdate () {},
-  // 生命周期 - 更新之后
-  updated () {},
-  // 生命周期 - 销毁之前
-  beforeDestroy () {},
-  // 生命周期 - 销毁完成
-  destroyed () {}
+      //console.log(localStorage.getItem('user'));
+      let u ={
+        uname:JSON.parse(localStorage.getItem('user')).uname,
+        upass:JSON.parse(localStorage.getItem('user')).upass,
+        uid:JSON.parse(localStorage.getItem('user')).uid,
+        name:JSON.parse(localStorage.getItem('user')).name,
+        regtime:JSON.parse(localStorage.getItem('user')).regtime
+      }
+      //console.log(u)
+      global.setUser(u);
+      if (global.user.name){
+        this.name = global.user.name;
+        this.loginFlag = true;
+      }
+      console.log(this.name)
+  }
   }
   </script>
 

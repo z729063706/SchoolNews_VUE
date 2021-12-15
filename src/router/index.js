@@ -77,6 +77,14 @@ const router = new Router({
 
             ],
             beforeEnter: (to, from, next) => {
+                let u ={
+                    uname:JSON.parse(localStorage.getItem('user')).uname,
+                    upass:JSON.parse(localStorage.getItem('user')).upass,
+                    uid:JSON.parse(localStorage.getItem('user')).uid,
+                    name:JSON.parse(localStorage.getItem('user')).name,
+                    regtime:JSON.parse(localStorage.getItem('user')).regtime
+                  }
+                global.setUser(u);
                 if (global.user.uname == null) {
                     // console.log(global.user);
                     window.alert("请先登录哦~~");
