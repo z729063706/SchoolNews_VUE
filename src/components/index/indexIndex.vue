@@ -41,17 +41,15 @@
         <div class="tags">
             <div class="tagsLeft">
               <a class= "tag" href="http://i.nefu.edu.cn">数字东林</a>
-              <a class= "tag" href="http://i.nefu.edu.cn">数字东林</a>
-              <a class= "tag" href="http://i.nefu.edu.cn">数字东林</a>
-              <a class= "tag" href="http://i.nefu.edu.cn">数字东林</a>
-              <a class= "tag" href="http://i.nefu.edu.cn">数字东林</a>
+              <a class= "tag" href="http://jwcnew.nefu.edu.cn/dblydx_jsxsd/">东林教务</a>
+              <a class= "tag" href="https://cas.webvpn.nefu.edu.cn/cas/login">WebVPN</a>
+              <a class= "tag" href="https://oa.webvpn.nefu.edu.cn/">东林办公</a>
             </div>
             <div class="tagsRight">
-              <a class= "tag" href="http://i.nefu.edu.cn">数字东林</a>
-              <a class= "tag" href="http://i.nefu.edu.cn">数字东林</a>
-              <a class= "tag" href="http://i.nefu.edu.cn">数字东林</a>
-              <a class= "tag" href="http://i.nefu.edu.cn">数字东林</a>
-              <a class= "tag" href="http://i.nefu.edu.cn">数字东林</a>
+              <a class= "tag" href="https://mail.nefu.edu.cn/">东林邮箱</a>
+              <a class= "tag" href="https://lib.nefu.edu.cn/">阅览系统</a>
+              <a class= "tag" href="https://tel.nefu.edu.cn/">常用电话</a>
+              <a class= "tag" href="https://cwcweb.nefu.edu.cn/">东林财务</a>
             </div>
           </div>
       </div>   
