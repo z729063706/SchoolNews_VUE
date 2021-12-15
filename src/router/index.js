@@ -82,7 +82,8 @@ const router = new Router({
                     upass:JSON.parse(localStorage.getItem('user')).upass,
                     uid:JSON.parse(localStorage.getItem('user')).uid,
                     name:JSON.parse(localStorage.getItem('user')).name,
-                    regtime:JSON.parse(localStorage.getItem('user')).regtime
+                    regtime:JSON.parse(localStorage.getItem('user')).regtime,
+                    utype:JSON.parse(localStorage.getItem('user')).utype
                   }
                 global.setUser(u);
                 if (global.user.uname == null) {
@@ -91,7 +92,15 @@ const router = new Router({
                     router.push("/")
                     next(false)
                 } else {
-                    next()
+                    if(global.user.utype==1){
+                        window.alert("权限不足,请联系教师进行修改");
+                        router.push("/")
+                        next(false)
+                    }
+                    else{
+                        //console.log(global.user.utype);
+                         next()
+                    }
                 }
             }
         }

@@ -247,10 +247,8 @@
           return "老师"
         }else if(type < 95){
           return "管理"
-        }else if(type < 100){
-          return "超级管理"
         }else{
-          return "爹"
+          return "超级管理"
         }
       }
   },
@@ -361,7 +359,10 @@
         //console.log("mainpic->",this.mainpic);
       })
       //console.log(localStorage.getItem('user'));
-      let u ={
+      
+  },
+  mounted(){
+    let u ={
         uname:JSON.parse(localStorage.getItem('user')).uname,
         upass:JSON.parse(localStorage.getItem('user')).upass,
         uid:JSON.parse(localStorage.getItem('user')).uid,
