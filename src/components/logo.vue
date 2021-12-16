@@ -14,7 +14,7 @@
           <router-link to="/" class="link"><el-menu-item index="2-2">通知公告</el-menu-item></router-link>
           <router-link to="/" class="link"><el-menu-item index="2-3">战果捷报</el-menu-item></router-link>
         </el-submenu>
-        <el-menu-item index="3" >教师风采</el-menu-item>
+        <router-link to="/" class="link"><el-menu-item index="3" >教师风采</el-menu-item></router-link>
         <router-link to="/admin" class="link"><el-menu-item index="4">后台管理</el-menu-item></router-link>
       </el-menu>
     </div>
@@ -40,7 +40,13 @@ export default {
   methods: {
     handleSelect(index, indexPath){
       this.activeIndex = index;
-      console.log("index",index,"  path",indexPath);
+      //console.log("index",index[0],"  path",indexPath);
+      if (index[0] == 2) {
+        document.getElementsByClassName("newsShow")[0].scrollIntoView({ behavior: 'smooth' });
+      }
+      if (index == 3) {
+        document.getElementsByClassName("teacher")[0].scrollIntoView({ behavior: 'smooth' });
+      }
     }
   },
 };
