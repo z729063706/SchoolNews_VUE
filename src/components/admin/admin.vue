@@ -15,6 +15,10 @@
               active-text-color="#ffd04b"
               :router="true"
             >
+              <el-menu-item index="/admin/tongji">
+                <i class="el-icon-monitor"></i>
+                <span slot="title">网站统计</span>
+              </el-menu-item>
               <el-menu-item index="/admin/manage">
                 <i class="el-icon-s-management"></i>
                 <span slot="title">新闻管理</span>
@@ -28,11 +32,11 @@
                 <span slot="title">用户管理</span>
               </el-menu-item>
               <el-menu-item index="/admin/teacher">
-                <i class="el-icon-user-solid"></i>
+                <i class="el-icon-s-custom"></i>
                 <span slot="title">教师信息</span>
               </el-menu-item>
               <el-menu-item index="/admin/mainpic">
-                <i class="el-icon-user-solid"></i>
+                <i class="el-icon-picture"></i>
                 <span slot="title">首页轮播图管理</span>
               </el-menu-item>
             </el-menu>

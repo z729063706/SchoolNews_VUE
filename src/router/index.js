@@ -9,6 +9,7 @@ import ReadNews from '../components/readNew'
 import Teacher from '../components/teachers'
 import Publish from '../components/admin/publish'
 import Manage from '../components/admin/manage'
+import Tongji from '../components/admin/tongji'
 import UserManage from '../components/admin/userManage'
 import TeacherManage from '../components/admin/teacher'
 import MainpicManage from '../components/admin/mainpic'
@@ -46,7 +47,7 @@ const router = new Router({
             component: Admin,
             children: [{
                     path: '',
-                    component: Manage,
+                    component: Tongji,
 
                 }, {
                     path: 'publish',
@@ -67,6 +68,10 @@ const router = new Router({
                 {
                     path: 'mainpic',
                     component: MainpicManage,
+                },
+                {
+                    path: 'tongji',
+                    component: Tongji,
                 }
 
             ],

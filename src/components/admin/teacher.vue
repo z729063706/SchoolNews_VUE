@@ -1,6 +1,11 @@
 <template>
   <div class>
+    <el-breadcrumb separator-class="el-icon-arrow-right">
+      <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/admin/teacher' }">教师管理</el-breadcrumb-item>
+    </el-breadcrumb>
     <div class="content">
+    
       <el-table
         :data="teacherList"
         style="width: 100%"

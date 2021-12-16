@@ -1,5 +1,9 @@
 <template>
   <div class>
+    <el-breadcrumb separator-class="el-icon-arrow-right">
+      <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/admin/mainpic' }">轮播图管理</el-breadcrumb-item>
+    </el-breadcrumb>
     <div class="content">
       <el-button size="mini" type="default" @click="dialoadAddView= true">添加新图片</el-button>
       <el-dialog class="dialog-addUser" title="添加新图片" :visible.sync="dialoadAddView">
