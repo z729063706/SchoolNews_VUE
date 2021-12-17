@@ -23,9 +23,9 @@
                 v-model="password">
              </el-input>
           </div>          
-          <Vcode :show="isShow" @success="login" @close="close" />
+          <Vcode :show="isShow" @success="login" />
           <div class="logButton">
-            <el-button type="primary" icon="el-icon-switch-button" @click="isShow=true">登陆</el-button>
+            <el-button type="primary" icon="el-icon-switch-button" @click="tovcode()">登陆</el-button>
           </div>
         </div>
         <div class="welcome" v-else>
@@ -226,6 +226,20 @@
   },
 
   computed: {
+    tovcode() {
+      //console.log(this.username);
+      if (this.username==""||this.password==""){
+          this.$message({
+                type: "danger",
+                message: "请输入用户名和密码"
+              });
+          return;
+        }
+      else{
+        this.isShow = true;
+      }
+    },
+
       hello() {
         let date = new Date().getHours();
         if (date >= 7 && date <= 11) {
@@ -335,11 +349,6 @@
   // 生命周期 - 创建之前
   beforeCreate () {
     //获取jw 
-
-      this.axios.post("api/getcode").then(res=>{
-        this.code = res.data;
-        console.log("code->",this.code);
-      });
       this.axios.get("api/news?type=1").then(res=>{
         this.jw_news = res.data;
         this.totalNumber = res.data.length
@@ -371,6 +380,7 @@
       
   },
   mounted(){
+    if (localStorage.getItem('user')){
     let u ={
         uname:JSON.parse(localStorage.getItem('user')).uname,
         upass:JSON.parse(localStorage.getItem('user')).upass,
@@ -384,7 +394,8 @@
         this.name = global.user.name;
         this.loginFlag = true;
       }
-      console.log(this.name)
+    }
+      //console.log(this.name)
   }
   }
   </script>
