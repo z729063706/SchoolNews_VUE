@@ -22,9 +22,10 @@
                 @keyup.enter.native="login" 
                 v-model="password">
              </el-input>
-          </div>
+          </div>          
+          <Vcode :show="isShow" @success="login" @close="close" />
           <div class="logButton">
-            <el-button type="primary" icon="el-icon-switch-button" @click="login">登陆</el-button>
+            <el-button type="primary" icon="el-icon-switch-button" @click="isShow=true">登陆</el-button>
           </div>
         </div>
         <div class="welcome" v-else>
@@ -198,9 +199,12 @@
   <script>
   // import global_ from "../Global";
   import global from '../../global.js';
+  import Vcode from "vue-puzzle-vcode";
   export default {
 
-  components: {},
+  components: {
+    Vcode
+  },
   data () {
     return {
         totalNumber:10,
@@ -216,7 +220,8 @@
         jw_news:{},
         notice_news:{},
         mainpic:{},
-        good_news:{}
+        good_news:{},
+        isShow:false
         }
   },
 
@@ -300,6 +305,7 @@
         localStorage.removeItem('user');
       },
       login() {
+        this.isShow = false;
         if (this.username==""||this.password==""){
           this.$message({
                 type: "danger",
@@ -329,6 +335,11 @@
   // 生命周期 - 创建之前
   beforeCreate () {
     //获取jw 
+
+      this.axios.post("api/getcode").then(res=>{
+        this.code = res.data;
+        console.log("code->",this.code);
+      });
       this.axios.get("api/news?type=1").then(res=>{
         this.jw_news = res.data;
         this.totalNumber = res.data.length
