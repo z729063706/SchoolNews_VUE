@@ -348,6 +348,14 @@
   },
   // 生命周期 - 创建之前
   beforeCreate () {
+    console.log("老师好!我是计科一班赵云浩");
+    console.log("这是个vue+servlet的前后端分离项目,耗费了60+小时时间码字,所有项目代码都可以在本人Github浏览,欢迎大家去围观屎山");
+    console.log("前台网页功能不是很多,但是后台管理功能比较齐全,请老师细细体验");
+    console.log("说下核心思想:我是想做成一个门户站,是想集成数字东林接口及webVPN做成一个更好看的学院官网");
+    console.log("但是WebVPN的接口调用起来比较困难还不稳定所以放弃了");
+    console.log("我争取把所有能想到的后台功能都写进去了,为后期迭代节省下很多时间");
+    console.log("接口大部分用的是post(有一些用get的是来不及修改了)");
+    console.log("用户名密码均为admin,也欢迎各位同学帮我测试找bug~");
     //获取jw 
       this.axios.get("api/news?type=1").then(res=>{
         this.jw_news = res.data;
