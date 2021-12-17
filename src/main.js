@@ -19,7 +19,7 @@ const errorHandler = (error, vm)=>{
   // window.console.error('抛出全局异常');
   // window.console.error(vm);
   // window.console.error(error);
-  
+  // 代码太烂 是个满控制台红字的屎山 注释错误提示 防止污染视觉
 }
 Vue.config.errorHandler = errorHandler;
 

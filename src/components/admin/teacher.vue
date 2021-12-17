@@ -51,7 +51,7 @@ export default {
       this.axios
         .post("/admin/addAdmin", obj)
         .then(res => {
-          window.console.log(res);
+          //window.console.log(res);
           if (res.data.msg == "添加成功") {
             this.$message({
               type: "success",
@@ -85,7 +85,7 @@ export default {
             uname: global.user.uname,
             upass: global.user.upass
           };
-          console.log(obj);
+          //console.log(obj);
           this.axios
             .post("/api/useredit", obj)
             .then(res => {
@@ -153,7 +153,7 @@ export default {
     this.axios.get("api/teacher")
     .then(res=>{
       this.teacherList = res.data;
-      console.log(this.teacherList);
+      //console.log(this.teacherList);
     });
   }
 };

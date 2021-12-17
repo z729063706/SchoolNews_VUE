@@ -90,7 +90,7 @@ export default {
         type: "warning"
       })
         .then(() => {
-          console.log(global.user);
+          //console.log(global.user);
           this.axios.get("api/delnews?id="+id+"&uname="+global.user.uname+"&upass="+global.user.upass)
           .then(() => {
             this.changeNewType()
@@ -133,7 +133,7 @@ export default {
   },
   // 生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {
-    window.console.log(this.tableData)
+    //window.console.log(this.tableData)
     // this.tableData = this.news.hot;
   },
   // 生命周期 - 创建之前

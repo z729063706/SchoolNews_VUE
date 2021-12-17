@@ -176,7 +176,7 @@ export default {
     this.axios.get("api/mainpic")
     .then(res=>{
       this.picList = res.data;
-      console.log(this.picList);
+      //console.log(this.picList);
     });
   }
 };

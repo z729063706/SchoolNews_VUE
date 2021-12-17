@@ -70,7 +70,7 @@ export default {
         auther: global.user.name,
         mainpic:this.news.mainpic
       }
-      console.log(obj);
+      //console.log(obj);
       this.publishing = true;
       this.axios
         .post("api/newsadd", obj)

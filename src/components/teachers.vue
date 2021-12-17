@@ -38,7 +38,7 @@ export default {
     //console.log(this.newsID);
     this.axios.get("api/getteacher?id="+this.teeacherID).then(res=>{
       this.teacher = res.data;
-      console.log("thisteacher->",this.teacher);
+      //console.log("thisteacher->",this.teacher);
     });
 
   }
